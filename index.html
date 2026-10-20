@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#1a5fd0" />
+  <title>CloudDrop – Cloud-Based File Storage</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- animated background -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg-img"></div>
+    <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+    <span class="cloudlet c1"></span><span class="cloudlet c2"></span><span class="cloudlet c3"></span>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M18 48a12 12 0 0 1-1-24 16 16 0 0 1 31 3 10.5 10.5 0 0 1-1 21z" fill="#fff"/>
+        <path d="M32 42V28m0 0-6 6m6-6 6 6" stroke="#1a5fd0" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>CloudDrop</span>
+    </div>
+    <div id="userBox" class="user-box hidden">
+      <span id="userEmail"></span>
+      <button id="logoutBtn" class="btn btn-ghost">Log out</button>
+    </div>
+  </header>
+
+  <!-- LOGIN VIEW -->
+  <main id="authView" class="container narrow">
+    <section class="hero">
+      <h1>Your files, safely in the cloud.</h1>
+      <p>CloudDrop stores your files in Supabase cloud storage so you can upload, download, and delete them from any device.</p>
+    </section>
+    <section class="card">
+      <h2 id="authTitle">Log in</h2>
+      <input id="email" type="email" placeholder="Email" autocomplete="email" />
+      <input id="password" type="password" placeholder="Password (min 6 characters)" autocomplete="current-password" />
+      <button id="authBtn" class="btn btn-primary">Log in</button>
+      <p class="muted">
+        <span id="authSwitchText">No account?</span>
+        <a href="#" id="authSwitch">Sign up</a>
+      </p>
+      <p id="authMsg" class="msg" role="alert"></p>
+    </section>
+  </main>
+
+  <!-- DASHBOARD VIEW -->
+  <main id="appView" class="container hidden">
+    <section class="stats">
+      <div class="stat"><span class="stat-num" id="statFiles">0</span><span class="stat-label">Files</span></div>
+      <div class="stat"><span class="stat-num" id="statSize">0 B</span><span class="stat-label">Storage used</span></div>
+    </section>
+
+    <section class="card">
+      <h2>Upload a file</h2>
+      <p class="muted">Allowed: images, PDF, text, Word, Excel, ZIP. Max 5 MB each.</p>
+      <input id="fileInput" type="file" hidden multiple />
+      <button id="uploadBtn" class="btn btn-primary">Upload File</button>
+      <div id="progressWrap" class="progress-wrap hidden">
+        <div class="progress"><div id="progressBar" class="progress-bar"></div></div>
+        <span id="progressText">0%</span>
+      </div>
+      <p id="uploadMsg" class="msg" role="alert"></p>
+    </section>
+
+    <section class="card">
+      <h2>Your files</h2>
+      <div id="loading" class="muted hidden">Loading files…</div>
+      <div id="empty" class="empty hidden">
+        <p><strong>No files yet.</strong></p>
+        <p class="muted">Choose Upload File above to add your first one.</p>
+      </div>
+      <ul id="fileList" class="file-list"></ul>
+      <p id="listMsg" class="msg" role="alert"></p>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+  <script type="module" src="animations.js"></script>
+</body>
+</html>
